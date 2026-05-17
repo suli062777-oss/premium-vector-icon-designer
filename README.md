@@ -104,3 +104,7 @@ This repository also includes `.github/workflows/validate.yml` to check required
 ## Notes
 
 The skill is intentionally lightweight: no runtime dependency, no generated bitmap assets, and no hidden build step. The value is in the design criteria, SVG constraints, and repeatable review process.
+
+## License
+
+MIT License.
