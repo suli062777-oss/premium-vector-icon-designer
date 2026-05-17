@@ -1,28 +1,44 @@
 # Premium Vector Icon Designer
 
-A Codex skill for designing practical, production-grade editable SVG icons.
+A Codex skill for turning icon briefs into clean, editable SVG assets with design-system discipline.
 
-This skill focuses on the parts that usually separate usable product icons from noisy generated artwork: clear metaphor, recognizable silhouette, coherent stroke joins, consistent geometry, small-size readability, clean SVG structure, and restrained polish.
+The skill is built around a simple belief: a good icon should read before it decorates. It starts with metaphor, silhouette, grid, and stroke continuity, then adds color or depth only when those choices improve hierarchy or product fit.
 
-## What It Solves
+## Why This Exists
 
-- Prevents malformed SVG icons with random glyph-like marks.
-- Avoids disconnected strokes, awkward joins, stray paths, and accidental fragments.
-- Prevents icons from becoming only primitive straight-line marks when a richer product icon is requested.
-- Keeps premium icon styles practical, editable, and readable instead of decorative for its own sake.
-- Produces prompts, SVG output rules, critique criteria, and repair strategies for icon work.
+Generated SVG icons often fail in small but expensive ways: broken joins, stray ticks, awkward tangents, inconsistent radii, random symbol-like marks, or a lifeless straight-line sketch when the brief asks for a polished product icon.
 
-## Best For
+This skill captures a stricter design-engineering review loop for icon work. It helps Codex produce icons that are not just visually pleasant, but also inspectable, editable, scalable, and easier to hand off to Figma or a codebase.
 
-- System UI icons
+## What It Enforces
+
+- Clear metaphor before decoration
+- Strong silhouette and one-color readability
+- Optical balance on the intended grid
+- Coherent stroke widths, caps, joins, radii, and curve tension
+- Enough shape vocabulary for the requested style: arcs, fills, negative space, duotone, or restrained gradients when useful
+- No malformed paths, disconnected strokes, floating fragments, or random glyph-like marks
+- SVG output that designers and engineers can actually edit
+
+## Good For
+
+- 24px system UI icons
 - Product feature icons
 - SaaS and dashboard icon sets
 - App-style badges and membership icons
-- Figma-ready SVG icons
-- Icon critique and cleanup
-- Prompt templates for high-quality vector icon generation
+- Figma-ready SVG assets
+- Icon critique, cleanup, and redesign prompts
 
-## Skill Structure
+## Quality Gates
+
+The skill checks icons in two passes:
+
+1. Structure pass: metaphor, silhouette, proportions, path continuity, joins, spacing, and small-size readability.
+2. Polish pass: controlled color hierarchy, duotone separation, soft highlight, or gradient only when it helps the icon.
+
+This keeps the output away from both extremes: messy decorative SVGs and overly plain straight-line drafts.
+
+## Repository Structure
 
 ```text
 premium-vector-icon-designer/
@@ -38,19 +54,12 @@ premium-vector-icon-designer/
     svg-output-rules.md
 ```
 
-## Core Principles
+## Included References
 
-The skill optimizes icon design in this order:
-
-1. Clear metaphor
-2. Recognizable silhouette
-3. Small-size readability
-4. Consistent geometry
-5. Coherent stroke and shape construction
-6. Editable SVG structure
-7. Restrained polish
-
-It does not treat gradients, shadows, glass effects, or 3D depth as default signs of quality. Those effects are used only when they improve hierarchy, brand fit, or the requested style.
+- `failure-prevention.md`: malformed SVG patterns, broken joins, primitive output, and repair strategy
+- `icon-quality-rubric.md`: metaphor, silhouette, scale, continuity, optical balance, editability, and restraint
+- `svg-output-rules.md`: SVG hygiene for monochrome, colored, gradient, and React-friendly output
+- `prompt-patterns.md`: reusable prompt structures for individual icons and icon sets
 
 ## Installation
 
@@ -66,16 +75,16 @@ On Windows, the equivalent path is usually:
 $env:USERPROFILE\.codex\skills\premium-vector-icon-designer
 ```
 
-After installation, restart Codex or refresh the environment so the skill metadata can be discovered.
+Restart Codex or refresh the environment so the skill metadata can be discovered.
 
 ## Example Prompts
 
 ```text
-Use premium-vector-icon-designer to design a 24px system-line icon for search. Keep it editable SVG, currentColor-based, with clean joins and no stray paths.
+Use premium-vector-icon-designer to design a 24px system-line icon for search. Keep it currentColor-based, grid-aligned, and free of stray paths.
 ```
 
 ```text
-Use premium-vector-icon-designer to create a polished but practical product icon for membership rewards. Use duotone hierarchy, rounded geometry, readable silhouette, and no decorative clutter.
+Use premium-vector-icon-designer to create a product icon for membership rewards. Use rounded geometry, duotone hierarchy, a readable silhouette, and no decorative clutter.
 ```
 
 ```text
@@ -90,10 +99,8 @@ If you have the Codex `skill-creator` validation script available, run:
 python path/to/skill-creator/scripts/quick_validate.py path/to/premium-vector-icon-designer
 ```
 
-The skill is intentionally kept lightweight: no runtime dependencies, no generated code, and no embedded bitmap assets.
+This repository also includes `.github/workflows/validate.yml` to check required files, frontmatter, and leftover scaffold markers on every push or pull request.
 
-This repository also includes a GitHub Actions workflow at `.github/workflows/validate.yml` to check the required skill files, frontmatter, and leftover scaffold markers on every push or pull request.
+## Notes
 
-## Publishing Notes
-
-Before publishing this repository publicly, choose a license that matches how you want others to use the skill. MIT is common for permissive reuse, but no license has been added here by default.
+The skill is intentionally lightweight: no runtime dependency, no generated bitmap assets, and no hidden build step. The value is in the design criteria, SVG constraints, and repeatable review process.
