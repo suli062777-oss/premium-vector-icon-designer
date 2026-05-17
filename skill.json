@@ -1,0 +1,29 @@
+{
+  "name": "premium-vector-icon-designer",
+  "version": "1.0.0",
+  "description": "A Codex skill for turning icon briefs into clean, editable SVG assets with design-system discipline.",
+  "author": "suli062777-oss",
+  "license": "MIT",
+  "repository": "https://github.com/suli062777-oss/premium-vector-icon-designer",
+  "entrypoint": "SKILL.md",
+  "metadata": "agents/openai.yaml",
+  "keywords": [
+    "codex-skill",
+    "svg-icons",
+    "icon-design",
+    "design-systems",
+    "figma",
+    "vector-graphics",
+    "design-engineering"
+  ],
+  "references": [
+    "references/failure-prevention.md",
+    "references/icon-quality-rubric.md",
+    "references/prompt-patterns.md",
+    "references/svg-output-rules.md"
+  ],
+  "assets": [
+    "assets/icon-grid-24.svg",
+    "assets/icon-grid-1024.svg"
+  ]
+}

@@ -1,5 +1,10 @@
 # Premium Vector Icon Designer
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-0f766e.svg)](LICENSE)
+[![Validate Skill](https://github.com/suli062777-oss/premium-vector-icon-designer/actions/workflows/validate.yml/badge.svg)](https://github.com/suli062777-oss/premium-vector-icon-designer/actions/workflows/validate.yml)
+[![Codex Skill](https://img.shields.io/badge/Codex-skill-111827.svg)](SKILL.md)
+[![SVG](https://img.shields.io/badge/output-editable%20SVG-7c3aed.svg)](references/svg-output-rules.md)
+
 A Codex skill for turning icon briefs into clean, editable SVG assets with design-system discipline.
 
 The skill is built around a simple belief: a good icon should read before it decorates. It starts with metaphor, silhouette, grid, and stroke continuity, then adds color or depth only when those choices improve hierarchy or product fit.
@@ -43,6 +48,7 @@ This keeps the output away from both extremes: messy decorative SVGs and overly 
 ```text
 premium-vector-icon-designer/
   SKILL.md
+  skill.json
   agents/openai.yaml
   assets/
     icon-grid-24.svg
@@ -56,23 +62,33 @@ premium-vector-icon-designer/
 
 ## Included References
 
-- `failure-prevention.md`: malformed SVG patterns, broken joins, primitive output, and repair strategy
-- `icon-quality-rubric.md`: metaphor, silhouette, scale, continuity, optical balance, editability, and restraint
-- `svg-output-rules.md`: SVG hygiene for monochrome, colored, gradient, and React-friendly output
-- `prompt-patterns.md`: reusable prompt structures for individual icons and icon sets
+| File | Purpose |
+| --- | --- |
+| `references/failure-prevention.md` | Malformed SVG patterns, broken joins, primitive output, and repair strategy |
+| `references/icon-quality-rubric.md` | Metaphor, silhouette, scale, continuity, optical balance, editability, and restraint |
+| `references/svg-output-rules.md` | SVG hygiene for monochrome, colored, gradient, and React-friendly output |
+| `references/prompt-patterns.md` | Reusable prompt structures for individual icons and icon sets |
 
 ## Installation
 
-Clone or copy this folder into your Codex skills directory:
+Clone the repository:
 
 ```bash
-~/.codex/skills/premium-vector-icon-designer
+git clone https://github.com/suli062777-oss/premium-vector-icon-designer.git
 ```
 
-On Windows, the equivalent path is usually:
+Copy the folder into your Codex skills directory:
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R premium-vector-icon-designer ~/.codex/skills/
+```
+
+On Windows PowerShell:
 
 ```powershell
-$env:USERPROFILE\.codex\skills\premium-vector-icon-designer
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
+Copy-Item -Recurse ".\premium-vector-icon-designer" "$env:USERPROFILE\.codex\skills\premium-vector-icon-designer"
 ```
 
 Restart Codex or refresh the environment so the skill metadata can be discovered.
@@ -91,6 +107,15 @@ Use premium-vector-icon-designer to create a product icon for membership rewards
 Use premium-vector-icon-designer to audit this SVG icon. Check metaphor clarity, stroke continuity, joins, stray paths, small-size readability, and whether it is too primitive or too decorative.
 ```
 
+## Maintenance
+
+Use these files as the review surface:
+
+- `SKILL.md`: runtime behavior and decision flow
+- `references/`: deeper rules loaded only when needed
+- `skill.json`: project metadata for the repository
+- `.github/workflows/validate.yml`: package integrity checks
+
 ## Validation
 
 If you have the Codex `skill-creator` validation script available, run:
@@ -99,11 +124,11 @@ If you have the Codex `skill-creator` validation script available, run:
 python path/to/skill-creator/scripts/quick_validate.py path/to/premium-vector-icon-designer
 ```
 
-This repository also includes `.github/workflows/validate.yml` to check required files, frontmatter, and leftover scaffold markers on every push or pull request.
+This repository also includes `.github/workflows/validate.yml` to check required files, `SKILL.md` frontmatter, `skill.json`, and leftover scaffold markers on every push or pull request.
 
-## Notes
+## Contributing
 
-The skill is intentionally lightweight: no runtime dependency, no generated bitmap assets, and no hidden build step. The value is in the design criteria, SVG constraints, and repeatable review process.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the review checklist used when changing the skill behavior or adding new references.
 
 ## License
 

@@ -24,12 +24,16 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import json
           import sys
           import yaml
 
           root = Path(".")
           required_files = [
               "SKILL.md",
+              "skill.json",
+              "CONTRIBUTING.md",
+              "CHANGELOG.md",
               "agents/openai.yaml",
               "assets/icon-grid-24.svg",
               "assets/icon-grid-1024.svg",
@@ -66,8 +70,29 @@ jobs:
                           if not isinstance(description, str) or len(description) < 80:
                               errors.append("SKILL.md description is missing or too short.")
 
+          metadata_path = root / "skill.json"
+          if metadata_path.is_file():
+              try:
+                  metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  errors.append(f"skill.json is invalid JSON: {exc}")
+              else:
+                  expected = {
+                      "name": "premium-vector-icon-designer",
+                      "version": "1.0.0",
+                      "license": "MIT",
+                      "entrypoint": "SKILL.md",
+                      "metadata": "agents/openai.yaml",
+                  }
+                  for key, value in expected.items():
+                      if metadata.get(key) != value:
+                          errors.append(f"skill.json has unexpected {key!r}.")
+                  for key in ("keywords", "references", "assets"):
+                      if not isinstance(metadata.get(key), list) or not metadata[key]:
+                          errors.append(f"skill.json must include a non-empty {key!r} list.")
+
           for path in root.rglob("*"):
-              if path.is_file() and path.suffix.lower() in {".md", ".yaml", ".yml", ".svg"}:
+              if path.is_file() and path.suffix.lower() in {".md", ".yaml", ".yml", ".svg", ".json"}:
                   text = path.read_text(encoding="utf-8")
                   markers = ("TO" + "DO", "FIX" + "ME", "[TO" + "DO", "place" + "holder")
                   for marker in markers:
