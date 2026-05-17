@@ -1,0 +1,82 @@
+name: Validate Skill
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install validation dependency
+        run: python -m pip install --upgrade PyYAML
+
+      - name: Validate skill package
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+          import yaml
+
+          root = Path(".")
+          required_files = [
+              "SKILL.md",
+              "agents/openai.yaml",
+              "assets/icon-grid-24.svg",
+              "assets/icon-grid-1024.svg",
+              "references/failure-prevention.md",
+              "references/icon-quality-rubric.md",
+              "references/prompt-patterns.md",
+              "references/svg-output-rules.md",
+          ]
+
+          errors = []
+
+          for rel in required_files:
+              if not (root / rel).is_file():
+                  errors.append(f"Missing required file: {rel}")
+
+          skill_path = root / "SKILL.md"
+          if skill_path.is_file():
+              text = skill_path.read_text(encoding="utf-8")
+              if not text.startswith("---\n"):
+                  errors.append("SKILL.md must start with YAML frontmatter.")
+              else:
+                  parts = text.split("---", 2)
+                  if len(parts) < 3:
+                      errors.append("SKILL.md frontmatter is not closed.")
+                  else:
+                      try:
+                          meta = yaml.safe_load(parts[1])
+                      except Exception as exc:
+                          errors.append(f"SKILL.md frontmatter is invalid YAML: {exc}")
+                      else:
+                          if meta.get("name") != "premium-vector-icon-designer":
+                              errors.append("SKILL.md has an unexpected skill name.")
+                          description = meta.get("description", "")
+                          if not isinstance(description, str) or len(description) < 80:
+                              errors.append("SKILL.md description is missing or too short.")
+
+          for path in root.rglob("*"):
+              if path.is_file() and path.suffix.lower() in {".md", ".yaml", ".yml", ".svg"}:
+                  text = path.read_text(encoding="utf-8")
+                  markers = ("TO" + "DO", "FIX" + "ME", "[TO" + "DO", "place" + "holder")
+                  for marker in markers:
+                      if marker in text:
+                          errors.append(f"Found {marker!r} in {path}")
+
+          if errors:
+              print("\n".join(errors))
+              sys.exit(1)
+
+          print("Skill validation passed.")
+          PY

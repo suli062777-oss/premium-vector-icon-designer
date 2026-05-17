@@ -1,0 +1,9 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1024px app icon grid">
+  <rect width="1024" height="1024" fill="white"/>
+  <rect x="96" y="96" width="832" height="832" rx="192" stroke="#94A3B8" stroke-width="4" stroke-dasharray="16 16"/>
+  <rect x="160" y="160" width="704" height="704" rx="160" stroke="#CBD5E1" stroke-width="3"/>
+  <circle cx="512" cy="512" r="352" stroke="#E2E8F0" stroke-width="3"/>
+  <circle cx="512" cy="512" r="288" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="12 12"/>
+  <path d="M512 96V928M96 512H928" stroke="#64748B" stroke-width="3"/>
+  <path d="M256 96V928M768 96V928M96 256H928M96 768H928" stroke="#E5E7EB" stroke-width="2"/>
+</svg>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Premium Vector Icon Designer"
+  short_description: "Design clean, practical SVG icons without malformed strokes."
+  default_prompt: "Design a practical, production-grade editable SVG icon with clean geometry, coherent joins, strong small-size readability, controlled visual hierarchy, and no stray or malformed paths."

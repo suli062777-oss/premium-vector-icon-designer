@@ -1,0 +1,7 @@
+<svg width="240" height="240" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="24px icon grid">
+  <rect width="24" height="24" fill="white"/>
+  <path d="M0 1H24M0 2H24M0 3H24M0 4H24M0 5H24M0 6H24M0 7H24M0 8H24M0 9H24M0 10H24M0 11H24M0 12H24M0 13H24M0 14H24M0 15H24M0 16H24M0 17H24M0 18H24M0 19H24M0 20H24M0 21H24M0 22H24M0 23H24M1 0V24M2 0V24M3 0V24M4 0V24M5 0V24M6 0V24M7 0V24M8 0V24M9 0V24M10 0V24M11 0V24M12 0V24M13 0V24M14 0V24M15 0V24M16 0V24M17 0V24M18 0V24M19 0V24M20 0V24M21 0V24M22 0V24M23 0V24" stroke="#E5E7EB" stroke-width="0.05"/>
+  <rect x="2" y="2" width="20" height="20" rx="2" stroke="#94A3B8" stroke-width="0.15" stroke-dasharray="0.5 0.5"/>
+  <circle cx="12" cy="12" r="10" stroke="#CBD5E1" stroke-width="0.12"/>
+  <path d="M12 0V24M0 12H24" stroke="#64748B" stroke-width="0.12"/>
+</svg>
